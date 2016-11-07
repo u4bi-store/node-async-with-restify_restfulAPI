@@ -5,6 +5,7 @@
         "start": "node server"
     },
     "dependencies": {
-        "restify": "*"
+        "restify": "*",
+        "async": "*"
     }
 }
