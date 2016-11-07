@@ -4,9 +4,9 @@ var boardController = require('./controller/BoardController.js');
 var server = restify.createServer();
 server.listen(3000);
 server.get("user/:name/:nation", function (req, res, next) {
-	var p = req.params;
-	var temp ={ name : p.name, nation : p.nation};
-	console.log(JSON.stringify(temp));
+    var p = req.params;
+    var temp ={ name : p.name, nation : p.nation};
+    console.log(JSON.stringify(temp));
 });
 
 server.post('board',boardController.create); //          생성     : POST방식 Create
