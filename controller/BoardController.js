@@ -1,8 +1,8 @@
 var api = require('../service/send-JSON.js');
 
 function create(req, res){
-    var insert = require('../model/board/insert.js');
-	api(res, insert(req));
+    var userInsert = require('../model/board/insert.js');
+	api(res, userInsert(req));
 }
 
 function index(req, res){
