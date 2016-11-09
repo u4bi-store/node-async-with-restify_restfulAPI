@@ -7,21 +7,21 @@ function create(req, res){
 
 function index(req, res){
     var userSelectAll = require('../model/board/selects.js');
-	api(res, userSelectAll());
+    api(res, userSelectAll());
 }
 
 function show(req, res){
     var userSelect = require('../model/board/select.js');
-	api(res, userSelect(req));
+    api(res, userSelect(req));
 }
 
 function update(req, res){
     var userUpdate = require('../model/board/update.js');
-	api(res, userUpdate(req));
+    api(res, userUpdate(req));
 }
 function destory(req, res){
     var userDelete = require('../model/board/delete.js');
-	api(res, userDelete(req));
+    api(res, userDelete(req));
 }
 
 exports.create = create;
