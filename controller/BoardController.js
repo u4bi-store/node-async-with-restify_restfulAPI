@@ -1,78 +1,29 @@
-var async = require('async');
-var boardAPI = require('../model/board-api.js');
+var api = require('../service/send-JSON.js');
 
 function create(req, res){
-	async.waterfall([function(callback){
-        callback(null, boardAPI.create);
-	},function(arg,callback){
-        var temp = { create_sql : arg};
-		callback(null, temp);
-	}],function(err, result){
-		if(err) console.log(err);
-		api(res, result);
-	});	
+    var insert = require('../model/board/insert.js');
+	api(res, insert(req));
 }
 
 function index(req, res){
-	async.waterfall([function(callback){
-        callback(null, boardAPI.selects);
-	},function(arg,callback){
-		
-        var temp = { seletes_sql : arg};
-		callback(null, temp);
-		
-	}],function(err, result){
-		if(err) console.log(err);
-		api(res, result);
-	});	
+    var userSelectAll = require('../model/board/selects.js');
+	api(res, userSelectAll());
 }
+
 function show(req, res){
-	async.waterfall([function(callback){
-        callback(null, boardAPI.select);
-	},function(arg,callback){
-        var p = req.params;
-		
-        var temp = { select_sql : arg+' '+p.id};
-        callback(null, temp);
-		
-	}],function(err, result){
-        if(err) console.log(err);
-        api(res, result);
-	});	
+    var userSelect = require('../model/board/select.js');
+	api(res, userSelect(req));
 }
+
 function update(req, res){
-	async.waterfall([function(callback){
-        callback(null, boardAPI.update);
-	},function(arg,callback){
-        var p = req.params;
-		
-        var temp = { update_sql : arg+' '+p.id};
-        callback(null, temp);
-		
-	}],function(err, result){
-        if(err) console.log(err);
-        api(res, result);
-	});		
+    var userUpdate = require('../model/board/update.js');
+	api(res, userUpdate(req));
 }
 function destory(req, res){
-    async.waterfall([function(callback){
-        callback(null, boardAPI.delete);
-	},function(arg,callback){
-        var p = req.params;
-
-        var temp = { delete_sql : arg+' '+p.id};
-        callback(null, temp);
-		
-	}],function(err, result){
-        if(err) console.log(err);
-        api(res, result);
-    });		
+    var userDelete = require('../model/board/delete.js');
+	api(res, userDelete(req));
 }
 
-function api(res, results){
-    res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
-    res.end(JSON.stringify(results));
-}
 exports.create = create;
 exports.index = index;
 exports.show = show;
