@@ -1,6 +1,6 @@
 {
-    "name": "restify-api",
-    "version": "0.1.0",
+    "name": "restify-restful-api",
+    "version": "0.1.1",
     "scripts": {
         "start": "node server"
     },
